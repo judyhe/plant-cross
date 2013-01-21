@@ -504,6 +504,7 @@ section {padding:20px; border-bottom:1px solid #ddd;}
 .plant.active {border:3px solid purple;}
 .instructions {font-size:40px; text-align:center;}
 .parents {float:left; width:300px;}
+.offspring {padding-left:330px;}
 .parents .plant {background-color:#eee; border-color:#eee;}
 .parents .plant.active {border:3px solid purple;}
 .cross {padding-bottom:60px;}
