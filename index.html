@@ -8,12 +8,12 @@
     <title>Plant Crossing</title>
   </head>
   <body>
-    <section id="parents" class="clearfix">
+    <section id="parents" class="container">
       <h2>Parents</h2>
     </section>
     
     <script type="text/template" id="cross-template">
-      <section class="cross clearfix" id="cross-<%= id %>" data-id="<%= id %>">
+      <section class="cross container" id="cross-<%= id %>" data-id="<%= id %>">
         <h2>Cross <%= id %></h2>
         <div class="content clearfix">
           <div class="instructions">
@@ -27,7 +27,7 @@
     <script type="text/template" id="plant-template">
       <div class="plant clearfix" id="plant-<%= id %>">   
         <div class="plant-pic">
-          <img src="img/<%= img %>" width="120" />
+          <img src="img/<%= img %>" width="100" />
         </div>
         <div class="plant-data">
           <h4><%= name %></h4>
