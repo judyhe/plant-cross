@@ -31,8 +31,11 @@
         </div>
         <div class="plant-data">
           <h4><%= img === "seedling.png" ? id : name %></h4>
-          <p>Root coloration: <%= rootColor() %></p>
-          <p>Leaf Hairiness: <%= hairiness() %></p>
+          <p>
+            Root coloration: <%= rootColor() %> <br />
+            Leaf Hairiness: <%= hairiness() %>
+          </p>
+          
           <p>Root Size: <%= dmy %> </p>
           <p>Branching Tendency: <%= branching %> </p>
           <p>Whitefly Resistance: <%= flyResistance() %> </p>
