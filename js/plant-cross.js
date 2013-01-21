@@ -162,11 +162,13 @@ function Plant(id, opts){
   this.genes = opts.genes || {};
   this.dmy = opts.dmy || 0;
   this.branching = opts.branching || 0;
+  this.img = opts.img || id + '.png';
 }
 
 Plant.prototype.hairiness = function(){
   if (!this._hairiness) {
-    this._hairiness = this.geneScore(genes.mecu, this.genes.mecu);
+    var hairScore = this.geneScore(genes.mecu, this.genes.mecu);
+    this._hairiness = hairScore === 0 ? "none" : (hairScore === 1.5) ? "moderate" : "high";
   }
   return this._hairiness;
 }
@@ -246,7 +248,8 @@ Plant.prototype.crossWith = function(plant2) {
     
     var plant = new Plant(name + '-' + (n+1), {
       name: name,
-      genes: genes
+      genes: genes,
+      img: 'seedling.png'
     });          
     
     // cross the fake genes    

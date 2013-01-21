@@ -25,15 +25,20 @@
     </script>
     
     <script type="text/template" id="plant-template">
-      <div class="plant">   
-        <h4><%= name %></h4>
-        <p>Root coloration: <%= rootColor() %></p>
-        <p>Leaf Hairiness: <%= hairiness() %></p>
-        <p>Dry Matter Content: <%= dmy %> </p>
-        <p>Branching Tendency: <%= branching %> </p>
-        <p>Whitefly Resistance: <%= flyResistance() %> </p>
-        <p>Virus Resistance: <%= virusResistance() %> </p>
-        <p>Cyanide Content: <%= cyanide() %></p>
+      <div class="plant clearfix">   
+        <div class="plant-pic">
+          <img src="img/<%= img %>" width="140" />
+        </div>
+        <div class="plant-data">
+          <h4><%= name %></h4>
+          <p>Root coloration: <%= rootColor() %></p>
+          <p>Leaf Hairiness: <%= hairiness() %></p>
+          <p>Root Size: <%= dmy %> </p>
+          <p>Branching Tendency: <%= branching %> </p>
+          <p>Whitefly Resistance: <%= flyResistance() %> </p>
+          <p>Virus Resistance: <%= virusResistance() %> </p>
+          <p>Cyanide Content: <%= cyanide() %></p>
+        </div>
       </div>
     </script>
     
