@@ -498,12 +498,12 @@ ul ul, ul ol, ol ol, ol ul { margin-bottom: 0; }
 li { line-height: 20px; }
 
 section {padding:20px; border-bottom:1px solid #ddd;}
-.plant {float:left; width:350px; border:3px solid white; box-shadow: 0 1px 3px #666;padding:5px 10px; margin:10px; cursor:pointer;}
+.plant {float:left; border:3px solid white; box-shadow: 0 1px 3px #666;padding:5px 10px; margin:10px; cursor:pointer;}
 .plant-pic {float:left; margin-right:10px;}
-.plant-data {float:left;}
+.plant-data {float:left; width:200px;}
 .plant.active {border:3px solid purple;}
 .instructions {font-size:40px; text-align:center;}
 .parents {float:left; width:300px;}
-.parents .plant {width:200px; background-color:#eee; border-color:#eee;}
+.parents .plant {background-color:#eee; border-color:#eee;}
 .parents .plant.active {border:3px solid purple;}
 .cross {padding-bottom:60px;}

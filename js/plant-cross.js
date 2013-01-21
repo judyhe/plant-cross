@@ -237,7 +237,7 @@ Plant.prototype.crossWith = function(plant2) {
   });
     
   var offspring = [];
-  var name = plant1.id + 'x' + plant2.id;
+  var name = plant1.id + ' x ' + plant2.id;
   _.times(8, function(n){          
         
     var genes = {};
