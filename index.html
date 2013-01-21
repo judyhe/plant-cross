@@ -15,7 +15,7 @@
     <script type="text/template" id="cross-template">
       <section class="cross clearfix" id="cross-<%= id %>" data-id="<%= id %>">
         <h2>Cross <%= id %></h2>
-        <div class="content">
+        <div class="content clearfix">
           <div class="instructions">
             <p>Select two plants</p>  
             <button>Cross</button>        
@@ -55,7 +55,7 @@
       var $activeCross = $($.trim(crossTemplate({id: 1}))).appendTo($body);
       var $lastClicked;
       
-      $('.plant').click(function(){
+      $('body').on('click', '.plant', function(){
         var $this = $(this);        
         if ($this.hasClass('active')) {
           $this.removeClass('active');          
@@ -77,13 +77,13 @@
         
         var plant1 = $activePlants.first().data('plant');
         var plant2 = $activePlants.last().data('plant');
-        var children = plant1.crossWith(plant2);
+        var offspring = plant1.crossWith(plant2);
         
         var parentDivs = addDivs([plant1, plant2]);
-        var childrenDivs = addDivs(children);
-        $activeCross.find('.content').html('<div class="parents"><h3>Parents</h3></div><div class="children"><h3>Children</h3></div>');
+        var offspringDivs = addDivs(offspring);
+        $activeCross.find('.content').html('<div class="parents"><h3>Parents</h3></div><div class="offspring"><h3>Offspring</h3></div>');
         $activeCross.find('.parents').append(parentDivs);
-        $activeCross.find('.children').append(childrenDivs);
+        $activeCross.find('.offspring').append(offspringDivs);            
       });
       
       function addDivs(plants) {

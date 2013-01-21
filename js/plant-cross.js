@@ -236,7 +236,7 @@ Plant.prototype.crossWith = function(plant2) {
     }
   });
     
-  var children = [];
+  var offspring = [];
   var name = plant1.id + 'x' + plant2.id;
   _.times(8, function(n){          
         
@@ -256,14 +256,17 @@ Plant.prototype.crossWith = function(plant2) {
     plant.dmy = plant.fakeCross(plant1.dmy, plant2.dmy);
     plant.branching = plant.fakeCross(plant1.branching, plant2.branching);
     
-    children.push(plant);
+    offspring.push(plant);
   });
   
-  return children;
+  return offspring;
 }
 
 Plant.prototype.fakeCross = function(val1, val2) {
-  var val = 0.9*((val1 + val2)/2) + 0.1*(Math.floor((Math.random()*5)+1));        
-  return Math.round(val*2)/2;
+  var val = 0.9*((val1 + val2)/2) + 0.1*(Math.floor((Math.random()*8)-3)); 
+  val = Math.round(val*2)/2;
+  if (val < 1) val = 1;
+  if (val > 5) val = 5;
+  return val;
 }
 
