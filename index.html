@@ -25,12 +25,12 @@
     </script>
     
     <script type="text/template" id="plant-template">
-      <div class="plant clearfix">   
+      <div class="plant clearfix" id="plant-<%= id %>">   
         <div class="plant-pic">
           <img src="img/<%= img %>" width="140" />
         </div>
         <div class="plant-data">
-          <h4><%= img === "seedling.png" ? id : name %></h4>
+          <h4><%= name %></h4>
           <p>
             Root coloration: <%= rootColor() %> <br />
             Leaf Hairiness: <%= hairiness() %>

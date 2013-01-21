@@ -163,6 +163,7 @@ function Plant(id, opts){
   this.dmy = opts.dmy || 0;
   this.branching = opts.branching || 0;
   this.img = opts.img || id + '.png';
+  this.offspring = opts.offspring || false;
 }
 
 Plant.prototype.hairiness = function(){
@@ -237,7 +238,6 @@ Plant.prototype.crossWith = function(plant2) {
   });
     
   var offspring = [];
-  var name = plant1.id + ' x ' + plant2.id;
   _.times(8, function(n){          
         
     var genes = {};
@@ -246,10 +246,18 @@ Plant.prototype.crossWith = function(plant2) {
       genes[geneId] = combos[Math.floor((Math.random()*comboCount))];
     });
     
-    var plant = new Plant('(' + name + '-' + (n+1) + ')', {
+    var id = plant1.id + 'x' + plant2.id + '-' + (n+1);
+    var name = '(';
+    name += plant1.offspring ? plant1.name : plant1.id;
+    name += " x ";
+    name += plant2.offspring ? plant2.name : plant2.id;
+    name += '-' + (n+1) + ')';
+    
+    var plant = new Plant(id, {
       name: name,
       genes: genes,
-      img: 'seedling.png'
+      img: 'seedling.png',
+      offspring: true
     });          
     
     // cross the fake genes    
