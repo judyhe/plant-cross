@@ -508,3 +508,14 @@ section {padding:20px; border-bottom:1px solid #ddd;}
 .parents .plant {background-color:#eee; border-color:#eee;}
 .parents .plant.active {border:3px solid purple;}
 .cross {padding-bottom:60px;}
+
+.plant-graph-item {position:relative; height:20px; margin-bottom:4px;}
+.plant-graph-label {position:absolute; left: 0;}
+.plant-item {position:absolute; height:20px;}
+.plant-graph-value {position:absolute; right: 0; font-weight:bold; font-size:18px; top:-1px;}
+
+.plant-branching {background:#c4dcc1;}
+.plant-dmy {background: #c6aa86;}
+.plant-fly-resistance {background: #e0ceff}
+.plant-virus-resistance {background: #fde89e;}
+.plant-cyanide {background: #fab3b3;}
