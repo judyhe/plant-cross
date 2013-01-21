@@ -498,14 +498,14 @@ ul ul, ul ol, ol ol, ol ul { margin-bottom: 0; }
 li { line-height: 20px; }
 
 section {padding:20px; border-bottom:1px solid #ddd;}
-.plant {float:left; border:3px solid white; box-shadow: 0 1px 3px #666;padding:5px 10px; margin:10px; cursor:pointer;}
+.plant {float:left; border:3px solid white; height:254px; box-shadow: 0 1px 3px #666;padding:5px 10px; margin:10px; cursor:pointer;}
 .plant-pic {float:left; margin-right:10px;}
-.plant-data {float:left; width:200px;}
+.plant-data {float:left; width:160px;}
 .plant.active {border:3px solid purple;}
 .instructions {font-size:40px; text-align:center;}
 .parents {float:left; width:300px;}
-.offspring {padding-left:330px;}
-.parents .plant {background-color:#eee; border-color:#eee;}
+.offspring {padding-left:300px;}
+.parents .plant {background-color:#eee; border-color:#eee; height:auto;}
 .parents .plant.active {border:3px solid purple;}
 .cross {padding-bottom:60px;}
 
