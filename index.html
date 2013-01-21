@@ -83,7 +83,12 @@
         var offspringDivs = addDivs(offspring);
         $activeCross.find('.content').html('<div class="parents"><h3>Parents</h3></div><div class="offspring"><h3>Offspring</h3></div>');
         $activeCross.find('.parents').append(parentDivs);
-        $activeCross.find('.offspring').append(offspringDivs);            
+        $activeCross.find('.offspring').append(offspringDivs);
+        
+        var $crosses = $('.cross');
+        if ($crosses.length === 5) return;
+        
+        $activeCross = $($.trim(crossTemplate({id: $crosses.length+1}))).appendTo($body);
       });
       
       function addDivs(plants) {
