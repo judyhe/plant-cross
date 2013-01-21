@@ -246,7 +246,7 @@ Plant.prototype.crossWith = function(plant2) {
       genes[geneId] = combos[Math.floor((Math.random()*comboCount))];
     });
     
-    var plant = new Plant(name + '-' + (n+1), {
+    var plant = new Plant('(' + name + '-' + (n+1) + ')', {
       name: name,
       genes: genes,
       img: 'seedling.png'
