@@ -503,3 +503,6 @@ section {padding:20px; border-bottom:1px solid #ddd;}
 .plant-data {float:left;}
 .plant.active {border:3px solid purple}
 .instructions {font-size:40px; text-align:center; padding-bottom:200px;}
+.parents {float:left; width:300px;}
+.parents .plant {background-color:#eee; border-color:#eee;}
+.children {margin-left:350px;}

@@ -81,7 +81,7 @@
         
         var parentDivs = addDivs([plant1, plant2]);
         var childrenDivs = addDivs(children);
-        $activeCross.find('.content').html('<div class="parents"></div><div class="children"></div>');
+        $activeCross.find('.content').html('<div class="parents"><h3>Parents</h3></div><div class="children"><h3>Children</h3></div>');
         $activeCross.find('.parents').append(parentDivs);
         $activeCross.find('.children').append(childrenDivs);
       });
@@ -93,6 +93,7 @@
           $d.data('plant', p);
           $divs.push($d);
         });
+        return $divs;
       }
     </script>    
   </body>
