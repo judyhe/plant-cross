@@ -3,261 +3,92 @@
   <head>
     <script src="js/jquery-1.9.0.min.js" type="text/javascript"></script>
     <script src="js/underscore-min.js" type="text/javascript"></script>
+    <script src="js/plant-cross.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">        
     <title>Plant Crossing</title>
-    <script type="text/javascript">
-      function Gene(name, opts){
-        opts = opts || {};
-        this.name = name;
-        this.desc = opts.desc || {};
-        //this.inheritance = opts.inheritance || 'incomplete';
-        this.alleles = opts.alleles || {};
-        this.min = opts.min || 0;
-        this.max = opts.max || 2;        
-      }      
-      
-      var genesData = {
-        hpr: {
-          desc: 'resistance to whitefly',
-          alleles: { A: -1, a: 1, aw: 0.5 }
-        }, 
-        mecu: {
-          desc: 'resistance to whitefly (hair)', 
-          max: 3,
-          alleles: {B: 1.5, b: 0}
-        }, 
-        acmv1: {
-          desc: 'resistance to virus',
-          alleles: {C: 2, c: 0}
-        },
-        acmv2: {
-          desc: 'resistance to virus',
-          max: 3,
-          alleles: {D: -1.5, d: 1.5}
-        },
-        cyn: {
-          desc: 'resistance to cyanide',
-          max: 4,
-          alleles: {E0: 2, E1: 1, E2: 0.5}
-        },
-        vitA: {
-          desc: 'root color',
-          alleles: {F: 1, f: 0}
-        }
-      }
-      
-      var genes = {};
-      _.each(genesData, function(gd, key){
-        genes[key] = new Gene(key, gd);
-      });
-      
-      function geneScore(gene, alleles){
-        var score = 0;
-        _.each(alleles, function(allele){
-          score += gene.alleles[allele];
-        });
-        
-        if (score > gene.max) score = gene.max;
-        if (score < gene.min) score = gene.min;
-        return score;
-      }
-      
-      function Plant(id, opts){
-        opts = opts || {};
-        this.id = id;
-        this.name = opts.name || '';
-        this.genes = opts.genes || {};
-        this.dmy = opts.dmy || 0;
-        this.branching = opts.branching || 0;
-      }
-      
-      Plant.prototype.flyResistance = function(){
-        if (!this._flyResistance) {
-          var cynValues = { E0: 1, E1: 0.5, E2: 0};
-          var cynAddition = 0;          
-          _.each(this.genes.cyn, function(cynAllele){
-            cynAddition += cynValues[cynAllele];
-          });          
-          this._flyResistance = geneScore(genes.hpr, this.genes.hpr) + geneScore(genes.mecu, this.genes.mecu) + cynAddition;
-        } 
-        return this._flyResistance;
-      }
-      
-      Plant.prototype.virusResistance = function(){
-        if (!this._virusResistance) {
-          this._virusResistance = geneScore(genes.acmv1, this.genes.acmv1) + geneScore(genes.acmv2, this.genes.acmv2);
-        } 
-        return this._virusResistance;
-      }
-      
-      Plant.prototype.cyanide = function(){
-        if (!this._cyanide){
-          this._cyanide = geneScore(genes.cyn, this.genes.cyn);
-        }
-        return this._cyanide;
-      }
-         
-      var pData = {
-        CD: {
-          name: 'Cool Delicious',
-          genes: {
-            hpr: ['A', 'A'],
-            mecu: ['b', 'b'],
-            acmv1: ['c', 'c'],
-            acmv2: ['D', 'D'],
-            cyn: ['E2', 'E1'],
-            vitA: ['f', 'f']
-          },
-          dmy: 4,
-          branching: 1
-        },
-        BD: {
-          name: "Bitter Delicious",
-          genes: {
-            hpr: ['A', 'A'],
-            mecu: ['b', 'b'],
-            acmv1: ['c', 'c'],
-            acmv2: ['D', 'd'],
-            cyn: ['E0', 'E1'],
-            vitA: ['f', 'f']
-          }, 
-          dmy: 5,
-          branching: 1          
-        },
-        HL: {
-          name: "Hairy Leaf",
-          genes: {
-            hpr: ['A', 'a'],
-            mecu: ['B', 'B'],
-            acmv1: ['c', 'c'],
-            acmv2: ['D', 'd'],
-            cyn: ['E1', 'E1'],
-            vitA: ['f', 'f']
-          },
-          dmy: 4,
-          branching: 3
-        },
-        FA: {
-          name: "Fly Away",
-          genes: {
-            hpr: ['a', 'a'],
-            mecu: ['B', 'b'],
-            acmv1: ['c', 'c'],
-            acmv2: ['D', 'D'],
-            cyn: ['E0', 'E1'],
-            vitA: ['f', 'f']
-          },
-          dmy: 3,
-          branching: 3
-        },
-        AV: {
-          name: "Antiviral",
-          genes: {
-            hpr: ['A', 'a'],
-            mecu: ['b', 'b'],
-            acmv1: ['C', 'C'],
-            acmv2: ['D', 'D'],
-            cyn: ['E0', 'E2'],
-            vitA: ['f', 'f']
-          },
-          dmy: 3,
-          branching: 3
-        }, 
-        HH: {
-          name: "Hale and Hearty",
-          genes: {
-            hpr: ['A', 'A'],
-            mecu: ['B', 'b'],
-            acmv1: ['c', 'c'],
-            acmv2: ['d', 'd'],
-            cyn: ['E1', 'E2'],
-            vitA: ['F', 'f']
-          },
-          dmy: 3,
-          branching: 2
-        }, 
-        MT: {
-          name: "M.Tristis",
-          genes: {
-            hpr: ['aw', 'aw'],
-            mecu: ['B', 'B'],
-            acmv1: ['C', 'c'],
-            acmv2: ['D', 'D'],
-            cyn: ['E0', 'E0'],
-            vitA: ['F', 'f']
-          }, 
-          dmy: 2,
-          branching: 4
-        }, 
-        GC: {
-          name: "Golden Cassava",
-          genes: {
-            hpr: ['a', 'a'],
-            mecu: ['B', 'b'],
-            acmv1: ['c', 'c'],
-            acmv2: ['D', 'd'],
-            cyn: ['E1', 'E1'],
-            vitA: ['F', 'F']
-          }, 
-          dmy: 3,
-          branching: 3
-        }
-      };
-      var parents = {};
-      _.each(pData, function(pd, key){
-        parents[key] = new Plant(key, pd);
-      });
-      
-      
-      function doCross(plant1, plant2) {        
-        var possibles = {};        
-        _.each(plant1.genes, function(p1Alleles, geneId) {          
-          var p2Alleles = plant2.genes[geneId];          
-          if (p2Alleles) {
-            var combos = [];            
-            for (var i = 0; i<p1Alleles.length; i++) {
-              for (var j=0; j<p2Alleles.length; j++) {
-                combos.push([p1Alleles[i], p2Alleles[j]]);
-              }
-            }
-            possibles[geneId] = combos; 
-          } else {
-            possibles[geneId] = [p1Alleles];
-          }
-        });
-          
-        var offspring = [];
-        var name = plant1.id + 'x' + plant2.id;
-        _.times(8, function(n){          
-          // cross the fake genes
-          var dmy = fakeCross(plant1.dmy, plant2.dmy)
-          var branching = fakeCross(plant1.branching, plant2.branching);
-          
-          var genes = {};
-          _.each(possibles, function(combos, geneId){
-            var comboCount = combos.length;
-            genes[geneId] = combos[Math.floor((Math.random()*comboCount))];
-          });
-          
-          var plant = new Plant(name + '-' + (n+1), {
-            name: name,
-            dmy: dmy,
-            branching: branching,
-            genes: genes
-          });          
-          
-          offspring.push(plant);
-        });
-        
-        return offspring;
-      }
-      
-      function fakeCross(val1, val2) {
-        var val = 0.9*((val1 + val2)/2) + 0.1*(Math.floor((Math.random()*5)+1));        
-        return Math.round(val*2)/2;
-      }
-    </script>
   </head>
   <body>
+    <section id="parents" class="clearfix">
+      <h2>Parents</h2>
+    </section>
     
+    <script type="text/template" id="cross-template">
+      <section class="cross clearfix" id="cross-<%= id %>" data-id="<%= id %>">
+        <h2>Cross <%= id %></h2>
+        <div class="content">
+          <div class="instructions">
+            <p>Select two plants</p>  
+            <button>Cross</button>        
+          </div>
+        </div>
+      </section>
+    </script>
+    
+    <script type="text/template" id="plant-template">
+      <div class="plant">   
+        <h4><%= name %></h4>
+        <p>Root coloration: <%= rootColor() %></p>
+        <p>Leaf Hairiness: <%= hairiness() %></p>
+        <p>Dry Matter Content: <%= dmy %> </p>
+        <p>Branching Tendency: <%= branching %> </p>
+        <p>Whitefly Resistance: <%= flyResistance() %> </p>
+        <p>Virus Resistance: <%= virusResistance() %> </p>
+        <p>Cyanide Content: <%= cyanide() %></p>
+      </div>
+    </script>
+    
+    <script type="text/javascript">         
+      var plantTemplate = _.template($('#plant-template').html());  
+      var crossTemplate = _.template($('#cross-template').html());
+      var $body = $('body');
+      var $parents = $('#parents');
+      _.each(parents, function(plant){
+          var $parent = $($.trim(plantTemplate(plant))).appendTo($parents);
+          $parent.data('plant', plant);
+      });
+      
+      var $activeCross = $($.trim(crossTemplate({id: 1}))).appendTo($body);
+      var $lastClicked;
+      
+      $('.plant').click(function(){
+        var $this = $(this);        
+        if ($this.hasClass('active')) {
+          $this.removeClass('active');          
+        } else {
+          var activePlants = $('.plant.active').length;
+          if (activePlants == 2) {
+            $lastClicked.removeClass('active');
+          } 
+          $lastClicked = $this;
+          $this.addClass('active');
+        } 
+      });
+      
+      $('body').on('click', 'button', function(){
+        var $activePlants = $('.plant.active');
+        if ($activePlants.length !== 2) {
+          return alert('You must select two plants');
+        }
+        
+        var plant1 = $activePlants.first().data('plant');
+        var plant2 = $activePlants.last().data('plant');
+        var children = plant1.crossWith(plant2);
+        
+        var parentDivs = addDivs([plant1, plant2]);
+        var childrenDivs = addDivs(children);
+        $activeCross.find('.content').html('<div class="parents"></div><div class="children"></div>');
+        $activeCross.find('.parents').append(parentDivs);
+        $activeCross.find('.children').append(childrenDivs);
+      });
+      
+      function addDivs(plants) {
+        var $divs = [];
+        _.each(plants, function(p){
+          var $d = $($.trim(plantTemplate(p)));
+          $d.data('plant', p);
+          $divs.push($d);
+        });
+      }
+    </script>    
   </body>
 </html>
