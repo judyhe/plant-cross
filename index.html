@@ -78,6 +78,7 @@
         var plant1 = $activePlants.first().data('plant');
         var plant2 = $activePlants.last().data('plant');
         var offspring = plant1.crossWith(plant2);
+        $activePlants.removeClass('active');
         
         var parentDivs = addDivs([plant1, plant2]);
         var offspringDivs = addDivs(offspring);
