@@ -264,7 +264,10 @@ Plant.prototype.crossWith = function(plant2) {
 
 Plant.prototype.fakeCross = function(val1, val2) {
   var val = Math.round((val1 + val2)/2);
-  var mutation = [-0.5, 0, 0, 0, 0.5];
-  return val + mutation[Math.floor(Math.random()*mutation.length)];;
+  var mutation = [-0.5, 0, 0, 0, 0.5];  
+  val = mutation[Math.floor(Math.random()*mutation.length)];
+  if (val < 1) return 1;
+  if (val > 5) return 5;
+  return val;
 }
 
