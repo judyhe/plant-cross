@@ -32,6 +32,7 @@ var initData = {
   parents: {
     CD: {
       name: 'Cool Delicious',
+      cost: 100,
       genes: {
         hpr: ['A', 'A'],
         mecu: ['b', 'b'],
@@ -45,6 +46,7 @@ var initData = {
     },
     BD: {
       name: "Bitter Delicious",
+      cost: 100,
       genes: {
         hpr: ['A', 'A'],
         mecu: ['b', 'b'],
@@ -58,6 +60,7 @@ var initData = {
     },
     HL: {
       name: "Hairy Leaf",
+      cost: 200,
       genes: {
         hpr: ['A', 'A'],
         mecu: ['B', 'B'],
@@ -71,6 +74,7 @@ var initData = {
     },
     FA: {
       name: "Fly Away",
+      cost: 250,
       genes: {
         hpr: ['a', 'a'],
         mecu: ['B', 'b'],
@@ -84,6 +88,7 @@ var initData = {
     },
     AV: {
       name: "Antiviral",
+      cost: 300,
       genes: {
         hpr: ['A', 'A'],
         mecu: ['b', 'b'],
@@ -97,6 +102,7 @@ var initData = {
     }, 
     HH: {
       name: "Hale and Hearty",
+      cost: 350,
       genes: {
         hpr: ['A', 'A'],
         mecu: ['B', 'b'],
@@ -110,6 +116,7 @@ var initData = {
     }, 
     MT: {
       name: "M.Tristis",
+      cost: 50,
       genes: {
         hpr: ['aw', 'aw'],
         mecu: ['B', 'B'],
@@ -123,6 +130,7 @@ var initData = {
     }, 
     GC: {
       name: "Golden Cassava",
+      cost: 400,
       genes: {
         hpr: ['a', 'a'],
         mecu: ['B', 'b'],
@@ -167,6 +175,7 @@ function Plant(id, opts){
   this.img = opts.img || id + '.png';
   this.offspring = opts.offspring || false;
   this.generation = opts.generation || 0;
+  this.cost = opts.cost || 0;
 }
 
 Plant.prototype.hairiness = function(){
@@ -244,6 +253,7 @@ Plant.prototype.crossWith = function(plant2) {
     }
   });
   var generation = _.max([plant1.generation, plant2.generation]) + 1;
+  var cost = plant1.cost + plant2.cost + 1000*generation;
   
   var offspring = [];
   _.times(8, function(n){          
@@ -262,7 +272,8 @@ Plant.prototype.crossWith = function(plant2) {
       genes: genes,
       img: 'seedling.png',
       offspring: true,
-      generation: generation
+      generation: generation,
+      cost: cost
     });          
     
     // cross the fake genes    
