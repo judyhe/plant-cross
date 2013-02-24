@@ -176,6 +176,7 @@ function Plant(id, opts){
   this.offspring = opts.offspring || false;
   this.generation = opts.generation || 0;
   this.cost = opts.cost || 0;
+  this.rootParents = opts.rootParents || [id];
 }
 
 Plant.prototype.hairiness = function(){
@@ -253,7 +254,28 @@ Plant.prototype.crossWith = function(plant2) {
     }
   });
   var generation = _.max([plant1.generation, plant2.generation]) + 1;
-  var cost = plant1.cost + plant2.cost + 1000*generation;
+  var cost = 1000;
+
+  if (plant1.generation === 0 && plant2.generation === 0) {
+    cost += plant1.cost;
+    cost += plant2.cost;    
+  } else if (plant1.generation === 0){
+    cost += plant2.cost;
+    // check if plant2 already has plant1.id in its rootParents
+    if (!_.contains(plant2.rootParents, plant1.id)) {
+      cost += plant1.cost;
+    }     
+  } else if (plant2.generation === 0) {
+    cost += plant1.cost;
+    // check if plant1 already has plant2.id in its rootParents
+    if (!_.contains(plant1.rootParents, plant2.id)) {
+      cost += plant2.cost;
+    }    
+  } else {
+    cost += _.max([plant1.cost, plant2.cost]);
+  }
+  
+  var offspringRootParents = _.union(plant1.rootParents, plant2.rootParents);
   
   var offspring = [];
   _.times(8, function(n){          
@@ -273,7 +295,8 @@ Plant.prototype.crossWith = function(plant2) {
       img: 'seedling.png',
       offspring: true,
       generation: generation,
-      cost: cost
+      cost: cost,
+      rootParents: offspringRootParents
     });          
     
     // cross the fake genes    
