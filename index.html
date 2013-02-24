@@ -108,8 +108,8 @@
       
       $('body').on('click', 'button', function(){
         var $activePlants = $('.plant.active');
-        if ($activePlants.length !== 2) {
-          return alert('You must select two plants');
+        if (!$activePlants.length > 0) {
+          return alert('You must select at least one plant');
         }
         
         var plant1 = $activePlants.first().data('plant');
