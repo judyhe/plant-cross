@@ -164,6 +164,7 @@ function Plant(id, opts){
   this.branching = opts.branching || 0;
   this.img = opts.img || id + '.png';
   this.offspring = opts.offspring || false;
+  this.generation = opts.generation || 0;
 }
 
 Plant.prototype.hairiness = function(){
@@ -236,7 +237,8 @@ Plant.prototype.crossWith = function(plant2) {
       possibles[geneId] = [p1Alleles];
     }
   });
-    
+  var generation = _.max([plant1.generation, plant2.generation]) + 1;
+  
   var offspring = [];
   _.times(8, function(n){          
         
@@ -245,19 +247,16 @@ Plant.prototype.crossWith = function(plant2) {
       var comboCount = combos.length;
       genes[geneId] = combos[Math.floor((Math.random()*comboCount))];
     });
-    
+        
     var id = plant1.id + 'x' + plant2.id + '-' + (n+1);
-    var name = '(';
-    name += plant1.offspring ? plant1.name : plant1.id;
-    name += " x ";
-    name += plant2.offspring ? plant2.name : plant2.id;
-    name += '-' + (n+1) + ')';
+    var name = generation + '-' + (n+1);
     
     var plant = new Plant(id, {
       name: name,
       genes: genes,
       img: 'seedling.png',
-      offspring: true
+      offspring: true,
+      generation: generation
     });          
     
     // cross the fake genes    
