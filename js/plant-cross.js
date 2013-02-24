@@ -7,7 +7,7 @@ var initData = {
     mecu: {
       desc: 'resistance to whitefly (hair)', 
       max: 3,
-      alleles: {B: 1.5, b: 0}
+      alleles: {B: 1, b: 0}
     }, 
     acmv1: {
       desc: 'resistance to virus',
@@ -48,7 +48,7 @@ var initData = {
         hpr: ['A', 'A'],
         mecu: ['b', 'b'],
         acmv1: ['c', 'c'],
-        acmv2: ['D', 'd'],
+        acmv2: ['D', 'D'],
         cyn: ['E0', 'E1'],
         vitA: ['f', 'f']
       }, 
@@ -58,14 +58,14 @@ var initData = {
     HL: {
       name: "Hairy Leaf",
       genes: {
-        hpr: ['A', 'a'],
+        hpr: ['A', 'A'],
         mecu: ['B', 'B'],
         acmv1: ['c', 'c'],
         acmv2: ['D', 'd'],
         cyn: ['E1', 'E1'],
         vitA: ['f', 'f']
       },
-      dmy: 4,
+      dmy: 2,
       branching: 3
     },
     FA: {
@@ -79,19 +79,19 @@ var initData = {
         vitA: ['f', 'f']
       },
       dmy: 3,
-      branching: 3
+      branching: 4
     },
     AV: {
       name: "Antiviral",
       genes: {
-        hpr: ['A', 'a'],
+        hpr: ['A', 'A'],
         mecu: ['b', 'b'],
-        acmv1: ['C', 'C'],
+        acmv1: ['C', 'c'],
         acmv2: ['D', 'D'],
         cyn: ['E0', 'E2'],
         vitA: ['f', 'f']
       },
-      dmy: 3,
+      dmy: 2,
       branching: 3
     }, 
     HH: {
@@ -104,7 +104,7 @@ var initData = {
         cyn: ['E1', 'E2'],
         vitA: ['F', 'f']
       },
-      dmy: 3,
+      dmy: 2,
       branching: 2
     }, 
     MT: {
@@ -112,12 +112,12 @@ var initData = {
       genes: {
         hpr: ['aw', 'aw'],
         mecu: ['B', 'B'],
-        acmv1: ['C', 'c'],
+        acmv1: ['C', 'C'],
         acmv2: ['D', 'D'],
         cyn: ['E0', 'E0'],
         vitA: ['F', 'f']
       }, 
-      dmy: 2,
+      dmy: 1,
       branching: 4
     }, 
     GC: {
@@ -126,12 +126,12 @@ var initData = {
         hpr: ['a', 'a'],
         mecu: ['B', 'b'],
         acmv1: ['c', 'c'],
-        acmv2: ['D', 'd'],
+        acmv2: ['D', 'D'],
         cyn: ['E1', 'E1'],
         vitA: ['F', 'F']
       }, 
       dmy: 3,
-      branching: 3
+      branching: 2
     }
   }
 };
