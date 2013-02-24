@@ -2,7 +2,8 @@ var initData = {
   genes: {
     hpr: {
       desc: 'resistance to whitefly',
-      alleles: { A: -1, a: 1, aw: 0.5 }
+      alleles: { A: -1, a: 1, aw: 0.49 },
+      rounding: true
     }, 
     mecu: {
       desc: 'resistance to whitefly (hair)', 
@@ -188,6 +189,10 @@ Plant.prototype.geneScore = function(gene, alleles){
   _.each(alleles, function(allele){
     score += gene.alleles[allele];
   });
+  
+  if (gene.rounding) {
+    score = Math.round(score);
+  }
   
   if (score > gene.max) score = gene.max;
   if (score < gene.min) score = gene.min;

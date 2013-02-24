@@ -32,13 +32,13 @@
         <div class="plant-data">
           <h4><%= name %></h4>
           <p>
-            Root Color: <%= rootColor() %> <br />
-            Leaf Hairiness: <%= hairiness() %>
+            Root Color: <%= rootColor() %> <span class="plant-debug"><%= genes.vitA.join('') %></span> <br />
+            Leaf Hairiness: <%= hairiness() %> <span class="plant-debug"><%= genes.mecu.join('') %></span>
           </p>
           <div class="plant-graph">
             <div class="plant-graph-item">
               <div class="plant-dmy plant-item" style="width:<%= dmy/6*100%>%"></div>
-              <div class="plant-graph-label">Root Size</div>
+              <div class="plant-graph-label">Root Size </div>
               <div class="plant-graph-value"><%= dmy %></div>
             </div>
             <div class="plant-graph-item">
@@ -48,18 +48,21 @@
             </div>
             <div class="plant-graph-item">
               <div class="plant-fly-resistance plant-item" style="width:<%= flyResistance()/6*100%>%"></div>
-              <div class="plant-graph-label">Fly Resistance</div>
+              <div class="plant-graph-label">Fly Resistance </div>
               <div class="plant-graph-value"><%= flyResistance() %></div>
+              <div class="plant-debug"><%= genes.mecu.join('') %> <%= genes.hpr.join('') %> <%= genes.cyn.join('') %></div>
             </div>
             <div class="plant-graph-item">
               <div class="plant-virus-resistance plant-item" style="width:<%= virusResistance()/6*100%>%"></div>
               <div class="plant-graph-label">Virus Resistance</div>
               <div class="plant-graph-value"><%= virusResistance() %></div>
+              <div class="plant-debug"><%= genes.acmv1.join('') %> <%= genes.acmv2.join('') %></div>             
             </div>
             <div class="plant-graph-item">
               <div class="plant-cyanide plant-item" style="width:<%= cyanide()/6*100%>%"></div>
               <div class="plant-graph-label">Cyanide Content</div>
               <div class="plant-graph-value"><%= cyanide() %></div>
+              <div class="plant-debug"><%= genes.cyn.join('') %></div>                
             </div>                                                
           </div>
         </div>
