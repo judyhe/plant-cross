@@ -153,7 +153,8 @@ function Gene(name, opts){
   this.desc = opts.desc || {};
   this.alleles = opts.alleles || {};
   this.min = opts.min || 0;
-  this.max = opts.max || 2;        
+  this.max = opts.max || 2;   
+  this.rounding = opts.rounding;     
 }
 
 function Plant(id, opts){
