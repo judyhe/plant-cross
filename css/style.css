@@ -497,6 +497,25 @@ ul, ol {
 ul ul, ul ol, ol ol, ol ul { margin-bottom: 0; }
 li { line-height: 20px; }
 
+#debug {
+  position:absolute;
+  left:10px;
+  padding:10px;
+  background:#eee;
+  cursor:pointer;
+}
+.debug-off {display:none;}
+#debug-on {
+  width:30px;
+}
+#debug.debug-active {
+  background:#111;
+  color:#eee;
+}
+
+.debug-active form {display:none;}
+.debug-active .debug-off {display:block;}
+
 section {padding:20px; border-bottom:1px solid #ddd;}
 .plant {float:left; border:3px solid white; box-shadow: 0 1px 3px #666;padding:5px 10px; margin:10px; cursor:pointer;}
 .plant-pic {float:left; margin-right:10px;}
@@ -514,6 +533,8 @@ section {padding:20px; border-bottom:1px solid #ddd;}
 .plant-item {position:absolute; height:20px;}
 .plant-graph-value {position:absolute; right: 0; font-weight:bold; font-size:18px; top:-1px;}
 .plant-graph-item .plant-debug {position:absolute; left:-100px;background:#fff; }
+.plant-debug {display:none;}
+.debug-mode .plant-debug {display:block;}
 
 .plant-branching {background:#c4dcc1;}
 .plant-dmy {background: #c6aa86;}

@@ -8,6 +8,13 @@
     <title>Plant Crossing</title>
   </head>
   <body>
+    <div id="debug">
+      <form>
+        <input type="password" name="debug-on" id="debug-on" size="6"/>
+        <input type="submit" name="debug-submit" value="Debug">
+      </form>
+      <div class="debug-off">Turn Debug Off</div>
+    </div>
     <section id="parents" class="container">
       <h2>Parents</h2>
     </section>
@@ -32,8 +39,10 @@
         <div class="plant-data">
           <h4><%= name %></h4>
           <p>
-            Root Color: <%= rootColor() %> <span class="plant-debug"><%= genes.vitA.join('') %></span> <br />
-            Leaf Hairiness: <%= hairiness() %> <span class="plant-debug"><%= genes.mecu.join('') %></span>
+            Root Color: <%= rootColor() %><br />
+             <span class="plant-debug"><%= genes.vitA.join('') %></span>
+            Leaf Hairiness: <%= hairiness() %> 
+            <span class="plant-debug"><%= genes.mecu.join('') %></span>
           </p>
           <div class="plant-graph">
             <div class="plant-graph-item">
@@ -119,6 +128,22 @@
         $activeCross = $($.trim(crossTemplate({id: $crosses.length+1}))).appendTo($body);
       });
       
+      var $debug = $("#debug");
+      var $pw = $('#debug-on');
+      $debug.click(function(){
+        if ($debug.hasClass('debug-active')) {
+          $debug.removeClass('debug-active');
+          $body.removeClass('debug-mode');
+        }
+      }).find('form').submit(function(e){
+        e.preventDefault();
+        if ($pw.val() === "chervil") {
+          $debug.addClass('debug-active');
+          $body.addClass('debug-mode');
+        } else {
+          alert("wrong password bud");
+        }  
+      });
       function addDivs(plants) {
         var $divs = [];
         _.each(plants, function(p){
