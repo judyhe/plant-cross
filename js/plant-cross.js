@@ -182,7 +182,7 @@ function Plant(id, opts){
 Plant.prototype.hairiness = function(){
   if (!this._hairiness) {
     var hairScore = this.geneScore(genes.mecu, this.genes.mecu);
-    this._hairiness = hairScore === 0 ? "none" : (hairScore === 1.5) ? "moderate" : "high";
+    this._hairiness = hairScore === 0 ? "none" : (hairScore === 1) ? "moderate" : "high";
   }
   return this._hairiness;
 }
